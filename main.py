@@ -4,9 +4,8 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import requests
 
-# التوكن وآيدي المالك
+# التوكن الخاص بالبوت
 BOT_TOKEN = "8901655377:AAGnOGhoTYnRVvz4bL3bLbeVXFGlX8MocQQ"
-ALLOWED_USER_ID = 7073758161
 
 headers = {
     "Accept": "application/json, text/javascript, */*; q=0.01",
@@ -26,10 +25,7 @@ COOLDOWN_SECONDS = 100
 
 
 async def start_process(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # التحقق من أنك أنت فقط صاحب البوت
-    if update.effective_user.id != ALLOWED_USER_ID:
-        await update.message.reply_text("❌ عذراً، هذا البوت خاص بمالكه فقط.")
-        return
+    # تم إزالة الشرط الذي يقيد البوت لمالك واحد، أصبح يعمل للجميع الآن
 
     if not context.args:
         await update.message.reply_text(
